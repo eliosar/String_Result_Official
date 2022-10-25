@@ -1,4 +1,4 @@
-package src.e.borho.stringResultOfficial;
+package e.borho.swingcalculator;
 
 public class Calculator {
     public float add(float a, float b){
