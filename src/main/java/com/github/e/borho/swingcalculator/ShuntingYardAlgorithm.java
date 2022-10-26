@@ -1,4 +1,4 @@
-package e.borho.swingcalculator;
+package com.github.e.borho.swingcalculator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package e.borho.swingcalculator;
+package com.github.e.borho.swingcalculator;
 
 public enum Operator {
     POWER("^", 3, true),

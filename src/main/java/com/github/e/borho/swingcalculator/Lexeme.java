@@ -1,10 +1,12 @@
-package e.borho.swingcalculator;
+package com.github.e.borho.swingcalculator;
+
+import java.util.Objects;
 
 public class Lexeme {
 
     //well - Lexeme is another word for 'input token' - but why easy if you can do hard
 
-    public enum Type {LEFT_PARENTHESIS, RIGHT_PARENTHESIS, OPERATOR, FUNCTION, NUMBER}
+    private enum Type {LEFT_PARENTHESIS, RIGHT_PARENTHESIS, OPERATOR, FUNCTION, NUMBER}
 
     private final String value;
     private final Type type;
@@ -12,6 +14,21 @@ public class Lexeme {
     public Lexeme(String value, Type type) {
         this.value = value;
         this.type = type;
+    }
+
+    public static Lexeme number(String value){
+        return new Lexeme(value, Type.NUMBER);
+    }
+
+    public static Lexeme operator(String value){
+        return new Lexeme(value, Type.OPERATOR);
+    }
+
+    public static Lexeme rightParenthesis(){
+        return new Lexeme(")", Type.RIGHT_PARENTHESIS);
+    }
+    public static Lexeme leftParenthesis(){
+        return new Lexeme("(", Type.LEFT_PARENTHESIS);
     }
 
     public boolean isNumber() {
@@ -67,4 +84,16 @@ public class Lexeme {
         return "'" + value + "'";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lexeme lexeme = (Lexeme) o;
+        return value.equals(lexeme.value) && type == lexeme.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, type);
+    }
 }

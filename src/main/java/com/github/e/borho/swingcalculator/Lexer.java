@@ -1,4 +1,4 @@
-package e.borho.swingcalculator;
+package com.github.e.borho.swingcalculator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,15 +59,14 @@ public class Lexer {
     }
 
     private static boolean isLexemeTerminated(char c, char p) {
-        if(isNumberPart(c)){
-
-        }
         return !isNumberPart(c);
     }
 
     private static boolean isNumberPart(char c) {
+        //-.3e-2 wäre gültig
         return c == '.'
                 || c == 'e'
+                || c == 'E'
                 || c == '0'
                 || c == '1'
                 || c == '2'
@@ -82,19 +81,19 @@ public class Lexer {
 
     private static Lexeme createLexeme(String expression) {
         if(isNumber(expression)){
-            return new Lexeme(expression, Lexeme.Type.NUMBER);
+            return Lexeme.number(expression);
         }
         if(isOperatorOtherThanPlusMinus(expression)){
-            return new Lexeme(expression, Lexeme.Type.OPERATOR);
+            return Lexeme.operator(expression);
         }
         if(isPlusMinus(expression)){
-            return new Lexeme(expression, Lexeme.Type.OPERATOR);
+            return Lexeme.operator(expression);
         }
         if(isLeftParenthesis(expression)){
-            return new Lexeme(expression, Lexeme.Type.LEFT_PARENTHESIS);
+            return Lexeme.leftParenthesis();
         }
         if(isRightParenthesis(expression)){
-            return new Lexeme(expression, Lexeme.Type.RIGHT_PARENTHESIS);
+            return Lexeme.rightParenthesis();
         }
         throw new IllegalArgumentException("cannot lexe '"+expression+"'");
     }

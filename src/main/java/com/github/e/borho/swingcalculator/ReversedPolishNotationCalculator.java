@@ -1,4 +1,4 @@
-package e.borho.swingcalculator;
+package com.github.e.borho.swingcalculator;
 
 import java.util.List;
 import java.util.Stack;
@@ -25,11 +25,16 @@ public class ReversedPolishNotationCalculator {
         double firstDouble = firstNumberToken.asDouble();
         double secondDouble = secondNumberToken.asDouble();
         switch (operator){
-            case PLUS: return new Lexeme(""+(firstDouble + secondDouble), Lexeme.Type.NUMBER);
-            case MINUS:return new Lexeme(""+(firstDouble - secondDouble), Lexeme.Type.NUMBER);
-            case MULTIPLY: return new Lexeme(""+(firstDouble * secondDouble), Lexeme.Type.NUMBER);
-            case DIVIDE: return new Lexeme(""+(firstDouble / secondDouble), Lexeme.Type.NUMBER);
-            case POWER: return new Lexeme(""+Math.pow(firstDouble, secondDouble), Lexeme.Type.NUMBER);
+//            case PLUS: return new Lexeme(""+(firstDouble + secondDouble), Lexeme.Type.NUMBER);
+//            case MINUS:return new Lexeme(""+(firstDouble - secondDouble), Lexeme.Type.NUMBER);
+//            case MULTIPLY: return new Lexeme(""+(firstDouble * secondDouble), Lexeme.Type.NUMBER);
+//            case DIVIDE: return new Lexeme(""+(firstDouble / secondDouble), Lexeme.Type.NUMBER);
+//            case POWER: return new Lexeme(""+Math.pow(firstDouble, secondDouble), Lexeme.Type.NUMBER);
+            case PLUS: return Lexeme.number(""+(firstDouble + secondDouble));
+            case MINUS:return Lexeme.number(""+(firstDouble - secondDouble));
+            case MULTIPLY: return Lexeme.number(""+(firstDouble * secondDouble));
+            case DIVIDE: return Lexeme.number(""+(firstDouble / secondDouble));
+            case POWER: return Lexeme.number(""+Math.pow(firstDouble, secondDouble));
             default:throw new IllegalArgumentException("illegal input");
         }
     }
